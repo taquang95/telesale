@@ -1,0 +1,6 @@
+{
+  "name": "Academy Telesales Landing Page",
+  "description": "Landing page thực chiến tuyển sinh khóa học Đào Tạo Chuyên Sâu Kỹ Năng Telesale Bất Động Sản",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
