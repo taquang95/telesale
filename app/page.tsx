@@ -50,7 +50,7 @@ interface Registration {
 }
 
 const TOTAL_SEATS = 30;
-const INITIAL_REGISTERED_COUNT = 27; // High-fidelity social proof
+const INITIAL_REGISTERED_COUNT = 30; // Closed - Slots fully booked
 const EVENT_DATE = new Date('2026-06-24T08:00:00+07:00'); // 08:00 AM Wed, June 24, 2026 (Vietnam Time)
 
 export default function Page() {
@@ -599,6 +599,62 @@ export default function Page() {
   return (
     <div className="min-h-screen bg-[#0B0B0B] text-gray-100 flex flex-col font-sans transition-colors duration-300">
       
+      {/* FULLSCREEN LOCKOUT OVERLAY FOR OUT-OF-SLOTS */}
+      {seatsRemaining <= 0 && (
+        <div className="fixed inset-0 z-[10000] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 overflow-hidden select-none" id="full-lockout-overlay">
+          <div className="max-w-xl w-full bg-[#121212]/90 border-2 border-red-500/30 rounded-[2.5rem] p-8 md:p-10 shadow-[0_0_50px_rgba(239,68,68,0.2)] text-center space-y-6 md:space-y-8 relative overflow-hidden animate-in fade-in zoom-in duration-500">
+            
+            {/* Decorative BG Glow */}
+            <div className="absolute -top-12 -right-12 w-40 h-40 bg-red-500/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-12 -left-12 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+            
+            {/* Dynamic ring animated alert */}
+            <div className="flex justify-center">
+              <div className="w-20 h-20 bg-red-500/10 border border-red-500/20 rounded-full flex items-center justify-center shadow-inner relative">
+                <AlertTriangle className="w-10 h-10 text-red-500" />
+                <span className="absolute inset-0 rounded-full border border-red-500/40 animate-ping opacity-75"></span>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight uppercase leading-tight">
+                Hết Suất Đăng Ký!
+              </h2>
+              <div className="h-1 w-20 bg-red-500 mx-auto rounded-full" />
+            </div>
+
+            <div className="space-y-4 text-gray-300">
+              <p className="text-base sm:text-lg leading-relaxed font-semibold">
+                Chương trình thực chiến <strong className="text-white">“Đập Tan Nỗi Sợ Bản Đồ Telesale”</strong> đã chính thức đạt đủ số lượng tối đa <span className="text-brand font-black text-xl">30/30</span> học viên ưu tiên đăng ký trước.
+              </p>
+              <p className="text-sm sm:text-base text-gray-400 normal-case leading-relaxed">
+                Hệ thống đã tự động đóng cổng đăng ký giữ vé để đảm bảo chất lượng giảng dạy tốt nhất cho lớp học. Hẹn gặp lại bạn ở các chương trình học và khóa đào tạo tiếp theo của Nguyễn Nam Academy!
+              </p>
+            </div>
+
+            {/* Support Details */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-4 text-xs sm:text-sm text-left space-y-2 font-medium">
+              <p className="text-gray-400 text-center font-bold tracking-wide uppercase text-xs mb-1 text-brand">
+                Kênh Liên Hệ Ban Tổ Chức
+              </p>
+              <div className="h-px bg-white/5 w-full my-2" />
+              <div className="flex items-center justify-between">
+                <span className="text-gray-400">Hotline hỗ trợ:</span>
+                <span className="text-white font-extrabold font-mono">0987-182-666</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-gray-400">Website:</span>
+                <span className="text-white font-extrabold font-mono">www.nambds.vn</span>
+              </div>
+            </div>
+
+            <div className="text-[10px] text-gray-500 font-mono tracking-widest uppercase select-none">
+              Copyright © 2026 Nguyễn Nam Academy • All Rights Reserved
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* HEADER BAR */}
       <header className="sticky top-0 z-50 bg-[#0B0B0B]/90 backdrop-blur-md border-b border-white/5 py-4 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
